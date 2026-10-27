@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Levels</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <div class="home-container">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+            🐍
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1>
+            LEVELS
+        </h1>
+
+
+        <p class="tagline">
+            Choose your learning category
+        </p>
+
+
+        <!-- CATEGORY BOXES -->
+
+        <div class="menu">
+
+
+            <!-- BASIC -->
+
+            <a
+                href="{{ url_for('category_levels', category='basic') }}"
+                class="menu-button">
+
+                📘 BASIC
+
+                <small>
+                    Python fundamentals
+                </small>
+
+            </a>
+
+
+            <!-- SYNTAX -->
+
+            <a
+                href="{{ url_for('category_levels', category='syntax') }}"
+                class="menu-button">
+
+                📝 SYNTAX
+
+                <small>
+                    Python syntax
+                </small>
+
+            </a>
+
+
+            <!-- CODE -->
+
+            <a
+                href="{{ url_for('category_levels', category='code') }}"
+                class="menu-button">
+
+                💻 CODE
+
+                <small>
+                    Python problems
+                </small>
+
+            </a>
+
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <p class="footer-text">
+
+            Choose a category and start learning 🐍
+
+        </p>
+
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ category|upper }} Levels</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <div class="home-container">
+
+        <div class="logo">🐍</div>
+
+        <h1>{{ category|upper }}</h1>
+
+        <p class="tagline">
+            Choose a level to start learning
+        </p>
+
+
+        <div class="menu">
+
+            {% for level in range(1, 11) %}
+
+                <a
+                    href="{{ url_for('category_game',
+                                    category=category,
+                                    level=level) }}"
+                    class="menu-button"
+                >
+
+                    🐍 LEVEL {{ level }}
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+
+        <p class="footer-text">
+
+            {{ category|upper }}
+            • One Level at a Time 🐍
+
+        </p>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Python Hangman - Level {{ level }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="game-container">
+
+
+    <!-- HEADER -->
+
+    <div class="game-header">
+
+        <div>
+            🐍 Python Hangman
+        </div>
+
+        <div>
+            {{ category|upper }} • LEVEL {{ level }}
+        </div>
+
+    </div>
+
+
+    <!-- GAME STATS -->
+
+    <div class="game-stats game-info">
+
+
+        <div class="stat-box info-box">
+
+            <span class="stat-label">
+                ⭐ SCORE
+            </span>
+
+            <strong
+                id="score"
+                class="stat-value"
+            >
+                {{ start_score }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat-box info-box">
+
+            <span class="stat-label">
+                ❤️ CHANCES
+            </span>
+
+            <strong
+                id="chances"
+                class="stat-value"
+            >
+                6
+            </strong>
+
+        </div>
+
+
+        <div class="stat-box info-box">
+
+            <span class="stat-label">
+                ❓ QUESTION
+            </span>
+
+            <strong
+                id="question-number"
+                class="stat-value"
+            >
+                {{ start_index + 1 }} / {{ questions|length }}
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- HANGMAN -->
+
+    <div class="hangman-section hangman-area">
+
+
+        <img
+            id="hangman-image"
+            src="{{ url_for('static', filename='images/stage1.png') }}"
+            alt="Hangman"
+            class="hangman-image"
+        >
+
+
+        <div
+            id="game-message"
+            class="game-message"
+        ></div>
+
+
+        <div
+            id="celebration"
+            class="celebration"
+        ></div>
+
+
+    </div>
+
+
+    <!-- QUESTION -->
+
+    <div class="question-section question-area">
+
+
+        <div class="question-label">
+            ❓ QUESTION
+        </div>
+
+
+        <h2
+            id="question"
+            class="question-text"
+        >
+            {{ questions[start_index]["question"] }}
+        </h2>
+
+
+    </div>
+
+
+    <!-- ANSWER -->
+
+    <div class="answer-section answer-area">
+
+
+        <input
+            type="text"
+            id="answer"
+            class="answer-input"
+            placeholder="Enter your answer"
+            autocomplete="off"
+        >
+
+
+        <!-- SYNTAX EDITOR -->
+
+        <div
+            id="syntax-editor-container"
+            class="syntax-editor-container"
+            style="display: none;"
+        >
+
+
+            <div class="editor-header">
+
+                <span>
+                    🐍 Python Editor
+                </span>
+
+                <span>
+                    SYNTAX
+                </span>
+
+            </div>
+
+
+            <textarea
+                id="syntax-answer"
+                class="syntax-editor"
+                placeholder="Write your Python syntax here..."
+                spellcheck="false"
+                autocomplete="off"
+            ></textarea>
+
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="game-buttons">
+
+
+            <button
+                type="button"
+                id="check-answer"
+                class="menu-button game-button"
+            >
+                CHECK ANSWER
+            </button>
+
+
+            <button
+                type="button"
+                id="hint-button"
+                class="menu-button hint-button"
+            >
+                💡 SHOW HINT
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- HINT -->
+
+    <div
+        id="hint"
+        class="hint-display hint-text"
+    ></div>
+
+
+    <!-- BACK -->
+
+    <div class="game-buttons">
+
+        <a
+            href="{{ url_for('levels') }}"
+            class="menu-button"
+        >
+            ← BACK TO LEVELS
+        </a>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="game-footer">
+
+        Python Learning Hangman 🐍
+
+    </div>
+
+
+</div>
+
+
+
+<!-- LEARNING SCREEN -->
+
+<div
+    id="learning-screen"
+    class="learning-screen"
+>
+
+
+    <div class="learning-box learning-content">
+
+
+        <div class="learning-icon">
+            🐍
+        </div>
+
+
+        <div class="learning-title">
+            🐍 PYTHON LEARNING
+        </div>
+
+
+        <h2>
+            ✅ CORRECT!
+        </h2>
+
+
+        <div
+            id="learning-topic"
+            class="learning-topic"
+        ></div>
+
+
+        <div class="learning-section">
+
+            <h3 class="learning-section-title">
+                💡 Explanation
+            </h3>
+
+
+            <p
+                id="learning-explanation"
+                class="learning-explanation"
+            ></p>
+
+        </div>
+
+
+        <div class="memory-section">
+
+            <h3 class="learning-section-title">
+                🧠 Remember
+            </h3>
+
+
+            <p
+                id="learning-memory"
+                class="learning-memory"
+            ></p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="done-learning"
+            class="done-learning"
+        >
+            NEXT QUESTION →
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- GAME DATA -->
+
+<script id="game-data" type="application/json">
+{
+    "questions": {{ questions | tojson }},
+    "category": {{ category | tojson }},
+    "start_index": {{ start_index | tojson }},
+    "start_score": {{ start_score | tojson }}
+}
+</script>
+
+
+<!-- JAVASCRIPT -->
+
+<script
+    src="{{ url_for('static', filename='js/game.js') }}"
+></script>
+
+
+</body>
+
+</html>

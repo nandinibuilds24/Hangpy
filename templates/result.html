@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Result - Python Hangman</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <div class="result-container">
+
+        <div class="result-box">
+
+            <div class="logo">
+                🐍
+            </div>
+
+            <h1>
+                LEVEL {{ level }} COMPLETED!
+            </h1>
+
+            <p class="tagline">
+                {{ category|upper }} CATEGORY
+            </p>
+
+            <div class="score-display">
+
+                <h2>
+                    🎉 Your Score
+                </h2>
+
+                <div class="score">
+                    {{ score }} / {{ total_score }}
+                </div>
+
+            </div>
+
+            <p class="result-message">
+
+                You completed all {{ total_questions }}
+                questions in Level {{ level }}!
+
+            </p>
+
+            <div class="result-buttons">
+
+                <a
+                    href="{{ url_for('category_game', category=category, level=level) }}"
+                    class="menu-button"
+                >
+                    🔄 PLAY AGAIN
+                </a>
+
+                <a
+                    href="{{ url_for('start_game') }}"
+                    class="menu-button"
+                >
+                    🎮 START GAME
+                </a>
+
+                <a
+                    href="{{ url_for('levels') }}"
+                    class="menu-button"
+                >
+                    📚 LEVELS
+                </a>
+
+                <a
+                    href="{{ url_for('home') }}"
+                    class="menu-button"
+                >
+                    🏠 HOME
+                </a>
+
+            </div>
+
+            <p class="footer-text">
+                Keep learning Python and keep improving! 🐍💻
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

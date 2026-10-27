@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>About - Python Hangman</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        /* =========================
+           CHECK YOUR ANSWERS
+           ========================= */
+
+        .qa-box {
+            text-align: left;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .qa-question {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .show-answer {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 6px 10px;
+        }
+
+        .answer-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        .level-heading {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="home-container">
+
+        <div class="logo">
+            🐍
+        </div>
+
+        <h1>
+            PYTHON HANGMAN
+        </h1>
+
+        <p class="tagline">
+            Learn Python • Play • Improve
+        </p>
+
+
+        <!-- ABOUT -->
+
+        <div class="result-box">
+
+            <h2>
+                🎯 About the Game
+            </h2>
+
+            <p>
+                Python Hangman is a fun and interactive
+                learning game designed to help students
+                learn Python concepts through questions
+                and Hangman gameplay.
+            </p>
+
+        </div>
+
+
+        <!-- CATEGORIES -->
+
+        <div class="result-box">
+
+            <h2>
+                📚 Categories
+            </h2>
+
+            <p>
+                📘 <strong>Basic</strong>
+                — Python fundamentals
+            </p>
+
+            <p>
+                📝 <strong>Syntax</strong>
+                — Python syntax
+            </p>
+
+            <p>
+                💻 <strong>Code</strong>
+                — Python coding problems
+            </p>
+
+        </div>
+
+
+        <!-- HOW TO PLAY -->
+
+        <div class="result-box">
+
+            <h2>
+                🎮 How to Play
+            </h2>
+
+            <p>
+                1️⃣ Select a category.
+            </p>
+
+            <p>
+                2️⃣ Choose a level.
+            </p>
+
+            <p>
+                3️⃣ Read the question.
+            </p>
+
+            <p>
+                4️⃣ Enter your answer.
+            </p>
+
+            <p>
+                5️⃣ Correct answers earn points.
+            </p>
+
+            <p>
+                6️⃣ Wrong answers reduce your chances.
+            </p>
+
+            <p>
+                7️⃣ Use hints when needed.
+            </p>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="result-box">
+
+            <h2>
+                ✨ Features
+            </h2>
+
+            <p>
+                ❤️ 6 chances per question
+            </p>
+
+            <p>
+                💡 Hint system
+            </p>
+
+            <p>
+                ⭐ Score system
+            </p>
+
+            <p>
+                🎉 Celebration effects
+            </p>
+
+            <p>
+                📖 Learning explanations
+            </p>
+
+            <p>
+                📚 Multiple Python categories
+            </p>
+
+        </div>
+
+
+        <!-- TECHNOLOGIES -->
+
+        <div class="result-box">
+
+            <h2>
+                🛠️ Built With
+            </h2>
+
+            <p>
+                🐍 Python
+            </p>
+
+            <p>
+                🌐 Flask
+            </p>
+
+            <p>
+                🎨 HTML & CSS
+            </p>
+
+            <p>
+                ⚡ JavaScript
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             CHECK YOUR ANSWERS
+             ========================= -->
+
+        <div class="result-box">
+
+            <h2>
+                📚 Check Your Answers
+            </h2>
+
+            <p>
+                Try to answer the questions yourself first.
+                Click <strong>Show Answer</strong> to check your answer.
+            </p>
+
+
+            {% set current_level = 0 %}
+
+            {% for item in all_questions %}
+
+                {% if item.level != current_level %}
+
+                    {% set current_level = item.level %}
+
+                    <h3 class="level-heading">
+                        🐍 Level {{ item.level }}
+                    </h3>
+
+                {% endif %}
+
+
+                <div class="qa-box">
+
+                    <p class="qa-question">
+
+                        <strong>
+                            Q{{ loop.index }}.
+                        </strong>
+
+                        {{ item.question }}
+
+                    </p>
+
+
+                    <details>
+
+                        <summary class="show-answer">
+                            🔍 Show Answer
+                        </summary>
+
+
+                        <div class="answer-box">
+
+                            <strong>
+                                Answer:
+                            </strong>
+
+                            {{ item.answer }}
+
+                        </div>
+
+                    </details>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <div class="menu">
+
+            <a
+                href="{{ url_for('home') }}"
+                class="menu-button"
+            >
+
+                ← BACK TO HOME
+
+            </a>
+
+        </div>
+
+
+        <p class="footer-text">
+
+            Made with ❤️ for Python learners 🐍
+
+        </p>
+
+    </div>
+
+</body>
+
+</html>

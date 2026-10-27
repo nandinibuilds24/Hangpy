@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Python Hangman</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="home-container">
+
+        <div class="logo">
+            🐍
+        </div>
+
+        <h1>
+            PYTHON HANGMAN
+        </h1>
+
+        <p class="tagline">
+            Learn Python • Play • Improve
+        </p>
+
+        <div class="menu">
+
+            <a
+                href="{{ url_for('start_game') }}"
+                class="menu-button"
+            >
+                🎮 START GAME
+            </a>
+
+            <a
+                href="{{ url_for('levels') }}"
+                class="menu-button"
+            >
+                📚 LEVELS
+            </a>
+
+            <a
+                href="{{ url_for('about') }}"
+                class="menu-button"
+            >
+                ℹ️ ABOUT
+            </a>
+
+        </div>
+
+        <p class="footer-text">
+            Python Learning Hangman 🐍
+        </p>
+
+    </div>
+
+</body>
+
+</html>
